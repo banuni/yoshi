@@ -1,0 +1,11 @@
+{
+  "name": "monorepo-app",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "monorepo-lib": "^1.0.0"
+  },
+  "yoshi": {
+    "projectType": "app"
+  }
+}

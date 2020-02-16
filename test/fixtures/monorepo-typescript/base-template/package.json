@@ -1,0 +1,15 @@
+{
+  "name": "monorepo-basic-ts",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "yoshi": {
+    "experimentalMonorepo": true
+  },
+  "jest": {
+    "preset": "jest-yoshi-preset"
+  }
+}

@@ -20,7 +20,7 @@ describe.each(['prod'] as const)('stats [%s]', mode => {
 
         expect(fs.existsSync(statsFilePath)).toBeTruthy();
       },
-      { args: ['--stats'] },
+      { extraArgs: ['--stats'] },
     );
   });
 });

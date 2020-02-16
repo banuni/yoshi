@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react",
+    "lib": ["dom", "esnext", "webworker"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+  "files": [
+    "{%rootPath%}/packages/yoshi/types.d.ts",
+    "{%rootPath%}/node_modules/jest-yoshi-preset/types.d.ts"
+  ]
+}
