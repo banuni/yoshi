@@ -25,7 +25,7 @@ Steps to register your app in dev center:
 
   - In **Widget Endpoints** section add:
     - Editor endpoint to render your widget via `Component URL`. It could be your server or static html file url (see more: [#2013](https://github.com/wix/yoshi/issues/2013)), which will be rendered in iFrame by platform. For local development (after you start the app by `yoshi-flow-editor start`) it will be available by: `https://localhost:3000/editor/:componentName`.
-    - Settings Panel endpoint. Server or static html url which will render settings for your widget. For local development it will be `https://localhost:3000/settings/:componentName`. hochesh v fifku?
+    - Settings Panel endpoint. Server or static html url which will render settings for your widget. For local development it will be `https://localhost:3000/settings/:componentName`.
   - Update your **local app**. Each widget should be represented by component in your app. To map dev center widget with your component just add `"id": "{Widget ID}"` to `.component.json` in the component's directory. This will allow yoshi to create all the magic under the hood.
 
 
