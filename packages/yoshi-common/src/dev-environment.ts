@@ -317,7 +317,7 @@ export default class DevEnvironment {
   }: {
     webpackConfigs: [
       webpack.Configuration,
-      webpack.Configuration,
+      webpack.Configuration?,
       webpack.Configuration?,
       webpack.Configuration?,
     ];
@@ -373,16 +373,18 @@ export default class DevEnvironment {
       }
     }
 
-    if (!serverConfig.entry) {
-      throw new Error('server webpack config was created without an entry');
-    }
+    if (serverConfig) {
+      if (!serverConfig.entry) {
+        throw new Error('server webpack config was created without an entry');
+      }
 
-    // Add server hot entry
-    serverConfig.entry = addEntry(serverConfig.entry, [
-      `${require.resolve('./utils/server-hot-client')}?${
-        serverProcess.socketServer.hmrPort
-      }`,
-    ]);
+      // Add server hot entry
+      serverConfig.entry = addEntry(serverConfig.entry, [
+        `${require.resolve('./utils/server-hot-client')}?${
+          serverProcess.socketServer.hmrPort
+        }`,
+      ]);
+    }
 
     const multiCompiler = createCompiler(webpackConfigs.filter(isTruthy));
 
@@ -393,7 +395,7 @@ export default class DevEnvironment {
       webWorkerServerCompiler,
     ] = multiCompiler.compilers as [
       webpack.Compiler,
-      webpack.Compiler,
+      webpack.Compiler?,
       webpack.Compiler?,
       webpack.Compiler?,
     ];
@@ -428,7 +430,9 @@ export default class DevEnvironment {
       storybookProcess,
     });
 
-    devEnvironment.startServerHotUpdate(serverCompiler);
+    if (serverCompiler) {
+      devEnvironment.startServerHotUpdate(serverCompiler);
+    }
 
     if (webWorkerCompiler) {
       devEnvironment.startWebWorkerHotUpdate(webWorkerCompiler);

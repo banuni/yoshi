@@ -16,9 +16,9 @@
     "versionBumpStrategy": "minor"
   },
   "scripts": {
-    "pretest": "yoshi build",
-    "test": "yoshi test",
-    "posttest": "yoshi lint"
+    "pretest": "yoshi-library build",
+    "test": "yoshi-library test",
+    "posttest": "yoshi-library lint"
   },
   "husky": {
     "hooks": {
@@ -44,6 +44,9 @@
     "testPathIgnorePatterns": ["<rootDir>/dist/", "<rootDir>/node_modules/"]
   },
   "yoshi": {
+    "entry": {
+      "playground": "./index.ts"
+    },
     "hmr": "auto"
   },
   "eslintConfig": {

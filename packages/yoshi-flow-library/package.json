@@ -1,0 +1,36 @@
+{
+  "name": "yoshi-flow-library",
+  "version": "4.45.1",
+  "bin": {
+    "yoshi-app": "./build/bin/yoshi-app.js"
+  },
+  "keywords": [
+    "yoshi",
+    "flow",
+    "app"
+  ],
+  "files": [
+    "build",
+    "src"
+  ],
+  "author": "Ran Yitzhaki",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "8.1.0",
+    "@types/lodash": "4.14.149",
+    "@types/webpack": "4.41.7"
+  },
+  "dependencies": {
+    "arg": "4.1.3",
+    "bfj": "6.1.2",
+    "chalk": "2.4.2",
+    "fs-extra": "8.1.0",
+    "lodash": "4.17.15",
+    "globby": "11.0.0",
+    "execa": "4.0.0",
+    "yoshi-common": "4.45.1",
+    "yoshi-config": "4.43.2",
+    "yoshi-flow-legacy": "4.45.1",
+    "yoshi-helpers": "4.43.2"
+  }
+}

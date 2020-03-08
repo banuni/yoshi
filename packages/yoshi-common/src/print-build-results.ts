@@ -25,6 +25,20 @@ export function printBundleSizeSuggestion() {
   );
 }
 
+export function printClientBuildResult(
+  webpackStats: webpack.Stats,
+  cwd: string = process.cwd(),
+) {
+  printStatsResult(prepareAssets(webpackStats, cwd), 'cyan');
+}
+
+function printServerBuildResult(
+  webpackStats: webpack.Stats,
+  cwd: string = process.cwd(),
+) {
+  printStatsResult(prepareAssets(webpackStats, cwd), 'yellow');
+}
+
 export function printBuildResult({
   webpackStats,
   cwd = process.cwd(),
@@ -34,11 +48,8 @@ export function printBuildResult({
 }) {
   const [clientStats, serverStats] = webpackStats;
 
-  const clientAssets = prepareAssets(clientStats, cwd);
-  const serverAssets = prepareAssets(serverStats, cwd);
-
-  printStatsResult(clientAssets, 'cyan');
-  printStatsResult(serverAssets, 'yellow');
+  printClientBuildResult(clientStats, cwd);
+  printServerBuildResult(serverStats, cwd);
 }
 
 function prepareAssets(
