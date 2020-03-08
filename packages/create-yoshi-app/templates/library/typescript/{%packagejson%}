@@ -16,7 +16,8 @@
     "versionBumpStrategy": "minor"
   },
   "scripts": {
-    "pretest": "yoshi-library build",
+    "build": "yoshi-library build",
+    "start": "yoshi-library start",
     "test": "yoshi-library test",
     "posttest": "yoshi-library lint"
   },
