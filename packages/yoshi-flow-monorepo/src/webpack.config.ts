@@ -48,7 +48,8 @@ const createDefaultOptions = (pkg: PackageGraphNode) => {
 };
 
 const isThunderboltElementModule = (pkg: PackageGraphNode) =>
-  pkg.name === 'thunderbolt-elements';
+  pkg.name === 'thunderbolt-elements' ||
+  pkg.name === 'editor-elements-registry';
 
 const isSiteAssetsModule = (pkg: PackageGraphNode) =>
   pkg.name === 'thunderbolt-becky' || pkg.name === '@wix/thunderbolt-becky';
@@ -148,7 +149,7 @@ export function createServerWebpackConfig(
 ): webpack.Configuration {
   const defaultOptions = createDefaultOptions(pkg);
 
-  const customThunderboltElements = pkg.name === 'thunderbolt-elements';
+  const customThunderboltElements = isThunderboltElementModule(pkg);
 
   const serverConfig = createBaseWebpackConfig({
     cwd: pkg.location,
