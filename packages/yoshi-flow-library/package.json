@@ -2,7 +2,7 @@
   "name": "yoshi-flow-library",
   "version": "4.45.1",
   "bin": {
-    "yoshi-app": "./build/bin/yoshi-app.js"
+    "yoshi-library": "./bin/yoshi-library.js"
   },
   "keywords": [
     "yoshi",

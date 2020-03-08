@@ -31,7 +31,7 @@
   "devDependencies": {
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
-    "yoshi": "^4.0.0",
+    "yoshi-flow-library": "^4.0.0",
     "ts-jest": "^24.0.2",
     "typescript": "~3.6.0",
     "@types/jest": "^24.0.0",
