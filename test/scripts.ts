@@ -139,8 +139,11 @@ export default class Scripts {
       projectType === 'monorepo-javascript' ||
       projectType === 'monorepo-typescript';
 
-    if (isMonorepo) {
-      execa.sync('yarn', [], { cwd: featureDir, stdio: 'inherit' });
+    if (isMonorepo && !isPublish) {
+      execa.sync('npx lerna link --force-local', [], {
+        cwd: featureDir,
+        stdio: 'inherit',
+      });
     }
 
     return new Scripts({ testDirectory: featureDir, isMonorepo });
