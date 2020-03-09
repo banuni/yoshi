@@ -149,21 +149,19 @@ export function createServerWebpackConfig(
 ): webpack.Configuration {
   const defaultOptions = createDefaultOptions(pkg);
 
-  const customThunderboltElements = isThunderboltElementModule(pkg);
-
   const serverConfig = createBaseWebpackConfig({
     cwd: pkg.location,
     configName: 'server',
     target: 'node',
     isDev,
     isHot,
-    useNodeExternals: !customThunderboltElements,
+    useNodeExternals: !isThunderboltElementModule(pkg),
     nodeExternalsWhitelist: libs.map(pkg => new RegExp(pkg.name)),
     useAssetRelocator: pkg.config.experimentalUseAssetRelocator,
     ...defaultOptions,
   });
 
-  if (customThunderboltElements) {
+  if (isThunderboltElementModule(pkg)) {
     serverConfig.output!.path = path.join(pkg.location, STATICS_DIR);
     serverConfig.plugins!.push(
       new webpack.optimize.LimitChunkCountPlugin({
