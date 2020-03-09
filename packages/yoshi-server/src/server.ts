@@ -93,7 +93,13 @@ export default class Server {
       // Change `/users/[userid]` to `/users/:userid`
       const routePath = relativePath.replace(/\[(\w+)\]/g, ':$1');
       return {
-        route: routePath === '/index' ? '/' : routePath,
+        route:
+          // TODO: refactor
+          routePath === '/index'
+            ? '/'
+            : path.basename(routePath) === 'index'
+            ? routePath.replace('/' + path.basename(routePath), '')
+            : routePath,
         handler: async (req, res, params) => {
           const fnThis = {
             context: this.context,
