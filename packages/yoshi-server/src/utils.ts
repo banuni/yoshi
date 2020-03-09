@@ -36,3 +36,14 @@ export function pathMatch(route: string, pathname: string | undefined) {
     };
   }, {});
 }
+export function buildRoute(routesBuildDir: string, absolutePath: string) {
+  const relativePath = `/${relativeFilePath(routesBuildDir, absolutePath)}`;
+  // Change `/users/[userid]` to `/users/:userid`
+  const routePath = relativePath.replace(/\[(\w+)\]/g, ':$1');
+  // TODO: refactor
+  return routePath === '/index'
+    ? '/'
+    : path.basename(routePath) === 'index'
+    ? routePath.replace(`/${path.basename(routePath)}`, '')
+    : routePath;
+}

@@ -10,7 +10,7 @@ import requireHttps from 'wix-express-require-https';
 import { ROUTES_BUILD_DIR } from 'yoshi-config/build/paths';
 import { InternalServerError } from './httpErrors';
 import { RouteFunction } from './types';
-import { relativeFilePath, pathMatch, connectToYoshiServerHMR } from './utils';
+import { pathMatch, connectToYoshiServerHMR, buildRoute } from './utils';
 
 export type Route = {
   route: string;
@@ -89,17 +89,9 @@ export default class Server {
 
     return serverChunks.map(absolutePath => {
       const chunk = importFresh(absolutePath) as RouteFunction<any>;
-      const relativePath = `/${relativeFilePath(routesBuildDir, absolutePath)}`;
-      // Change `/users/[userid]` to `/users/:userid`
-      const routePath = relativePath.replace(/\[(\w+)\]/g, ':$1');
+      const route = buildRoute(routesBuildDir, absolutePath);
       return {
-        route:
-          // TODO: refactor
-          routePath === '/index'
-            ? '/'
-            : path.basename(routePath) === 'index'
-            ? routePath.replace('/' + path.basename(routePath), '')
-            : routePath,
+        route,
         handler: async (req, res, params) => {
           const fnThis = {
             context: this.context,
