@@ -8,8 +8,8 @@
     "email": "{%authorEmail%}"
   },
   "scripts": {
-    "start": "yoshi start",
-    "pretest": "yoshi build",
+"start": "yoshi start",
+    "build": "yoshi build",
     "test": "yoshi test",
     "posttest": "yoshi lint"
   },

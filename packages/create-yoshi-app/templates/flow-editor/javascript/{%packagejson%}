@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "yoshi-flow-editor start",
-    "pretest": "yoshi-flow-editor build",
+    "build": "yoshi-flow-editor build",
     "test": "yoshi-flow-editor test",
     "test:ssr": "jest --config jest-ssr.config.js",
     "posttest": "yoshi-flow-editor lint"

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "yoshi start",
-    "pretest": "yoshi build",
+    "build": "yoshi build",
     "test": "yoshi test",
     "posttest": "yoshi lint"
   },

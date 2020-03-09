@@ -10,8 +10,8 @@
   },
   "scripts": {
     "start": "yoshi start",
-    "pretest": "yoshi build",
-    "test": "yoshi test --mocha",
+    "build": "yoshi build",
+    "test": "yoshi test",
     "posttest": "yoshi lint"
   },
   "husky": {

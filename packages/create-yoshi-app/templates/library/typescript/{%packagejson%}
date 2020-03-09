@@ -16,7 +16,8 @@
     "versionBumpStrategy": "minor"
   },
   "scripts": {
-    "pretest": "yoshi build",
+    "start": "yoshi start",
+    "build": "yoshi build",
     "test": "yoshi test",
     "posttest": "yoshi lint"
   },

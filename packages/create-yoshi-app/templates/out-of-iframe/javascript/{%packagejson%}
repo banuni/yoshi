@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "yoshi start",
-    "pretest": "yoshi build",
+    "build": "yoshi build",
     "test": "yoshi test --jest",
     "test:ssr": "jest --config jest-ssr.config.js",
     "posttest": "yoshi lint"
