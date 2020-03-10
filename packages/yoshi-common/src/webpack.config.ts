@@ -49,6 +49,7 @@ import ManifestPlugin from './manifest-webpack-plugin';
 import createBabelConfig from './create-babel-config';
 import SveltePreprocessSSR from './svelte-server-side-preprocess';
 import { asyncWebWorkerTarget } from './AsyncWebWorkerTarget/AsyncWebWorkerTarget';
+import { sourceMapsPlugin } from './source-maps-plugin';
 
 const isProduction = checkIsProduction();
 const inTeamCity = checkInTeamCity();
@@ -356,9 +357,6 @@ export function createBaseWebpackConfig({
             chunkFilename: `${SERVER_CHUNKS_DIR}/[name].js`,
             libraryTarget: 'umd',
             globalObject: "(typeof self !== 'undefined' ? self : this)",
-            // Point sourcemap entries to original disk location (format as URL on Windows)
-            devtoolModuleFilenameTemplate: info =>
-              path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
           }
         : {}),
 
@@ -620,7 +618,23 @@ export function createBaseWebpackConfig({
             }),
           ]
         : []),
+
+      ...(target === 'node'
+        ? [sourceMapsPlugin({ inline: true, showPathOnDisk: true })]
+        : inTeamCity || forceEmitSourceMaps
+        ? [sourceMapsPlugin({ publicPath })]
+        : !isProduction
+        ? [
+            sourceMapsPlugin({
+              cheap: true,
+              moduleMaps: true,
+              evaluate: true,
+            }),
+          ]
+        : []),
     ],
+
+    devtool: false,
 
     module: {
       // Makes missing exports an error instead of warning
@@ -906,15 +920,6 @@ export function createBaseWebpackConfig({
             __filename: false,
             __dirname: false,
           },
-
-    devtool:
-      target !== 'node'
-        ? inTeamCity || forceEmitSourceMaps
-          ? 'source-map'
-          : !isProduction
-          ? 'cheap-module-eval-source-map'
-          : false
-        : 'inline-source-map',
 
     ...(target === 'node'
       ? {
