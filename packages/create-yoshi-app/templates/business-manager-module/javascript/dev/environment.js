@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import {
   createTestkit,
   testkitConfigBuilder,
@@ -9,11 +8,12 @@ const getTestKitConfig = async (
   { withRandomPorts } = { withRandomPorts: false },
 ) => {
   const serverUrl = 'http://localhost:3200/';
-  const path = './templates/module_{%PROJECT_NAME%}.json';
   const serviceId = 'com.wixpress.{%projectName%}';
+  const path = '../app-config-templates/module_{%PROJECT_NAME%}.json';
 
   const moduleConfig = anAppConfigBuilder()
-    .fromJsonTemplate(JSON.parse(readFileSync(path).toString()))
+    .fromJsonTemplate(require(path)) //  replace this line with the next once your config is merged
+    // .fromModuleId('{%PROJECT_NAME%}')
     .withArtifactMapping({ [serviceId]: { url: serverUrl } })
     .build();
 

@@ -1,6 +1,6 @@
 {
   "moduleId": "{%PROJECT_NAME%}",
-  "mainPageComponentId": "{%projectName%}-lazy-component-id",
+  "mainPageComponentId": "{%projectName%}",
   "pageComponents": [
     {
       "pageComponentId": "{%projectName%}",
