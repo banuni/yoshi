@@ -13,7 +13,7 @@ const getTestKitConfig = async (
   const serviceId = 'com.wixpress.{%projectName%}';
 
   const moduleConfig = anAppConfigBuilder()
-    .fromJson(readFileSync(path).toJSON())
+    .fromJsonTemplate(JSON.parse(readFileSync(path).toString()))
     .withArtifactMapping({ [serviceId]: { url: serverUrl } })
     .build();
 
